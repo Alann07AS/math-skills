@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"math"
 	"mathSkills"
 	"os"
 )
@@ -17,10 +18,9 @@ func main() {
 		log.Fatal(err)
 	}
 	table := mathSkills.DataToInt(data)
-	fmt.Println(table)
-	fmt.Println("Average:", mathSkills.Average(table))
-	fmt.Println("Median:", mathSkills.Median(table))
-	fmt.Println("Variance:", mathSkills.Variance(table))
-	fmt.Println("Standard Deviation:", mathSkills.Deviation(table))
+	fmt.Println("Average:", math.Round(mathSkills.Average(table)))
+	fmt.Println("Median:", math.Round(mathSkills.Median(table)))
+	fmt.Println("Variance:", int(math.Round(mathSkills.Variance(table))))
+	fmt.Println("Standard Deviation:", math.Round(mathSkills.Deviation(table)))
 
 }

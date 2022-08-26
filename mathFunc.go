@@ -1,40 +1,46 @@
 package mathSkills
 
-import "sort"
+import (
+	"math"
+	"sort"
+)
 
-func Average(t []int) int {
-	nb := 0
+func Average(t []int) float64 {
+	nb := 0.0
 	for _, each := range t {
-		nb += each
+		nb += float64(each)
 	}
-	return nb / len(t)
+	return nb / float64(len(t))
 }
 
-func Median(t []int) int {
+func AverageFloat(t []float64) float64 {
+	nb := 0.0
+	for _, each := range t {
+		nb += float64(each)
+	}
+	return nb / float64(len(t))
+}
+
+func Median(t []int) float64 {
 	sort.Ints(t)
 	l := len(t)
-	m := l / 2
+	m := int(l / 2)
 	if l%2 != 0 {
-		return t[m]
+		return float64(t[m])
 	} else {
-		return (t[m] + t[m-1]) / 2
+		return (float64(t[m]) + float64(t[m-1])) / 2
 	}
 }
 
-func Variance(t []int) int {
-	newTable := []int{}
+func Variance(t []int) float64 {
+	newTable := []float64{}
 	m := Average(t)
 	for _, each := range t {
-		newTable = append(newTable, (each-m)*(each-m))
+		newTable = append(newTable, (float64(each)-m)*(float64(each)-m))
 	}
-	return Average(newTable)
+	return AverageFloat(newTable)
 }
 
-func Deviation(t []int) int {
-	v := Variance(t)
-	nb := 0
-	for nb*nb < v {
-		nb++
-	}
-	return nb
+func Deviation(t []int) float64 {
+	return math.Sqrt(Variance(t))
 }
